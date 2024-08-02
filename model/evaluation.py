@@ -3,8 +3,6 @@ from abc import ABC, abstractmethod
 import numpy as np
 from sklearn.metrics import mean_squared_error, r2_score
 
-
-
 class Evaluation(ABC):
     """
     Abstract Class defining the strategy for evaluating model performance
