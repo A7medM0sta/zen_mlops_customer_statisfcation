@@ -6,6 +6,11 @@ from steps.ingest_data import ingest_data
 from steps.model_train import train_model
 from zenml.integrations.mlflow.mlflow_utils import get_tracking_uri
 
+
+# Set model_config['protected_namespaces'] to an empty tuple
+model_config = {}
+model_config['protected_namespaces'] = ()
+
 class TrainingPipeline(BasePipeline):
     def connect(self):
         ingest = ingest_data()
