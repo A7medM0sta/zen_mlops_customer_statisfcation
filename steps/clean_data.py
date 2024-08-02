@@ -8,11 +8,10 @@ from model.data_cleaning import (
     DataPreprocessStrategy,
 )
 from typing_extensions import Annotated
+
+# from zenml.steps import Output, step
 from zenml import step
 
-# Set model_config['protected_namespaces'] to an empty tuple
-model_config = {}
-model_config['protected_namespaces'] = ()
 
 @step
 def clean_data(
