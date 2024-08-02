@@ -9,9 +9,9 @@ import logging
 # Initialize the experiment tracker
 experiment_tracker = Client().active_stack.experiment_tracker
 
-# # Check if the experiment tracker is None
-# if experiment_tracker is None:
-#     raise ValueError("Experiment tracker is not configured in the active stack.")
+# Check if the experiment tracker is None
+if experiment_tracker is None:
+    raise ValueError("Experiment tracker is not configured in the active stack.")
 
 @step(experiment_tracker=experiment_tracker.name)
 def evaluation(
