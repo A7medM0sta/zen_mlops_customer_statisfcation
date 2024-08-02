@@ -1,19 +1,22 @@
-from pipelines.training_pipeline import train_pipeline
+from zenml.client import Client
+from zenml.pipelines.base_pipeline import BasePipeline
 from steps.clean_data import clean_data
 from steps.evaluation import evaluation
 from steps.ingest_data import ingest_data
 from steps.model_train import train_model
 from zenml.integrations.mlflow.mlflow_utils import get_tracking_uri
 
-if __name__ == "__main__":
-    training = train_pipeline(
-        ingest_data(),
-        clean_data(),
-        train_model(),
-        evaluation(),
-    )
+class TrainingPipeline(BasePipeline):
+    def connect(self):
+        ingest = ingest_data()
+        clean = clean_data(ingest)
+        train = train_model(clean)
+        evaluate = evaluation(train)
+        return evaluate
 
-    training.run()
+if __name__ == "__main__":
+    pipeline = TrainingPipeline()
+    pipeline.run()
 
     print(
         "Now run \n "

@@ -1,27 +1,16 @@
 import logging
 from typing import Tuple
-
 import pandas as pd
-from model.data_cleaning import (
-    DataCleaning,
-    DataDivideStrategy,
-    DataPreprocessStrategy,
-)
+from model.data_cleaning import DataCleaning, DataDivideStrategy, DataPreprocessStrategy
 from typing_extensions import Annotated
-
-# from zenml.steps import Output, step
 from zenml import step
 
+# Set model_config['protected_namespaces'] to an empty tuple
+model_config = {}
+model_config['protected_namespaces'] = ()
 
 @step
-def clean_data(
-    data: pd.DataFrame,
-) -> Tuple[
-    Annotated[pd.DataFrame, "x_train"],
-    Annotated[pd.DataFrame, "x_test"],
-    Annotated[pd.Series, "y_train"],
-    Annotated[pd.Series, "y_test"],
-]:
+def clean_data(data: pd.DataFrame) -> Tuple[Annotated[pd.DataFrame, "x_train"], Annotated[pd.DataFrame, "x_test"], Annotated[pd.Series, "y_train"], Annotated[pd.Series, "y_test"]]:
     """Data cleaning class which preprocesses the data and divides it into train and test data.
 
     Args:
