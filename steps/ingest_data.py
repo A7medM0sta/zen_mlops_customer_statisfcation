@@ -7,7 +7,6 @@ class IngestData:
     """
     Data ingestion class which ingests data from the source and returns a DataFrame.
     """
-
     def __init__(self) -> None:
         """Initialize the data ingestion class."""
         pass
