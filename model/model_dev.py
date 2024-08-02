@@ -1,6 +1,5 @@
 import logging
 from abc import ABC, abstractmethod
-
 import optuna
 import pandas as pd
 import xgboost as xgb
@@ -13,12 +12,10 @@ class Model(ABC):
     """
     Abstract base class for all models.
     """
-
     @abstractmethod
     def train(self, x_train, y_train):
         """
         Trains the model on the given data.
-
         Args:
             x_train: Training data
             y_train: Target data

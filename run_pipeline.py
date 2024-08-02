@@ -1,11 +1,11 @@
-from zenml.pipelines import Pipeline
+from zenml.pipelines.base_pipeline import BasePipeline
 from steps.clean_data import clean_data
 from steps.evaluation import evaluation
 from steps.ingest_data import ingest_data
 from steps.model_train import train_model
 from zenml.integrations.mlflow.mlflow_utils import get_tracking_uri
 
-class TrainingPipeline(Pipeline):
+class TrainingPipeline(BasePipeline):
     def connect(self):
         ingest = ingest_data()
         clean = clean_data(ingest)
